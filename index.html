@@ -18,35 +18,12 @@
   app_id:"2877NHMD0TOHATHC6NNHDERW",
   debug_logs: 1,
   cluster: "DC_1",
+  enableSPA: true,
   swPath: "/website/serviceworker.js",
   swScope: '/website/'
   });
-  
-  let login = document.getElementById("signup")
-  login.addEventListener("click", function(){ 
-	  Moengage.track_event("myBtnClick");
-	  Moengage.add_first_name(document.getElementById("username").value);
-	  Moengage.add_unique_user_id(document.getElementById("username").value)
-  });
 		
-  		
-  Moengage.add_first_name("Dominick");
-  </script>
-
-	</head>
-<body>
-	<div id="detail" style="margin:auto; margin-top: 30vh;">
-    <div style="height: 30vh;width: 10vw;float: left;"><img id="cd" style="height: 100px; margin: 5px;position: relative;"src="logos/logo14.png"></div>
-    <div style="height: 30vh;width: 20vw;float: right;flex-direction: column; margin-right: 5px;">
-   <input type="input" style=" margin-top: 2vh;" name="" id="username" placeholder="Enter your username/email" >
-    <input type="password" style="margin-top: 2vh;" name="" id="Password" placeholder="Enter your Password" >
-    <input type="input" style="margin-top: 2vh;"name="" id="Country" placeholder="Enter your Country/Region">
-    <button type="button" class="btn btn-success" id="signup">Sign Up</button>
-    <button type="button" class="btn btn-dark" onclick="taketo()" style="float: left;font-size: 1vh;" id="signup">Pass without Signing In</button>
-  </div>
-   </div>
-<script type="text/javascript">
-//     	function check(){
+  function check(){
 //     	var i=0;
 // var mail=document.getElementById('username').value;
 //  if (/^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/.test(mail))
@@ -66,8 +43,32 @@
 // 	return true;
 // }}
 // function taketo(){
-//   document.location.href = "newpage.html";
-// }
+Moengage.track_event("myBtnClick");
+Moengage.add_first_name(document.getElementById("username").value);
+Moengage.add_unique_user_id(document.getElementById("username").value)
+}
+		
+  // let login = document.getElementById("signup")
+  // login.addEventListener("click", function(){ 
+	 //  Moengage.track_event("myBtnClick");
+	 //  Moengage.add_first_name(document.getElementById("username").value);
+	 //  Moengage.add_unique_user_id(document.getElementById("username").value)
+  // });
+</script>
+</head>
+<body>
+	<div id="detail" style="margin:auto; margin-top: 30vh;">
+    <div style="height: 30vh;width: 10vw;float: left;"><img id="cd" style="height: 100px; margin: 5px;position: relative;"src="logos/logo14.png"></div>
+    <div style="height: 30vh;width: 20vw;float: right;flex-direction: column; margin-right: 5px;">
+   <input type="input" style=" margin-top: 2vh;" name="" id="username" placeholder="Enter your username/email" >
+    <input type="password" style="margin-top: 2vh;" name="" id="Password" placeholder="Enter your Password" >
+    <input type="input" style="margin-top: 2vh;"name="" id="Country" placeholder="Enter your Country/Region">
+    <button type="button" class="btn btn-success" onclick="check()" id="signup">Sign Up</button>
+    <button type="button" class="btn btn-dark" onclick="taketo()" style="float: left;font-size: 1vh;" id="signup">Pass without Signing In</button>
+  </div>
+   </div>
+<script type="text/javascript">
+    	
 
     </script>
 	<script rel="serviceworker.js"></script>
