@@ -22,7 +22,8 @@
   swPath: "/website/serviceworker.js",
   swScope: '/website/'
   });
-		
+	</script>
+<script>	
   function check(){
 //     	var i=0;
 // var mail=document.getElementById('username').value;
@@ -43,6 +44,7 @@
 // 	return true;
 // }}
 // function taketo(){
+	  console.log("Signup button has been clicked")
 Moengage.track_event("myBtnClick");
 Moengage.add_first_name(document.getElementById("username").value);
 Moengage.add_unique_user_id(document.getElementById("username").value)
