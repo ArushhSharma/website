@@ -24,6 +24,7 @@
   
   let login = document.getElementById("signup")
   login.addEventListener("click", function(){ 
+	  Moengage.track_event("myBtnClick");
 	  Moengage.add_first_name(document.getElementById("username").value);
 	  Moengage.add_unique_user_id(document.getElementById("username").value)
   });
@@ -40,7 +41,7 @@
    <input type="input" style=" margin-top: 2vh;" name="" id="username" placeholder="Enter your username/email" >
     <input type="password" style="margin-top: 2vh;" name="" id="Password" placeholder="Enter your Password" >
     <input type="input" style="margin-top: 2vh;"name="" id="Country" placeholder="Enter your Country/Region">
-    <button type="button" class="btn btn-success" onclick="check()" id="signup">Sign Up</button>
+    <button type="button" class="btn btn-success" id="signup">Sign Up</button>
     <button type="button" class="btn btn-dark" onclick="taketo()" style="float: left;font-size: 1vh;" id="signup">Pass without Signing In</button>
   </div>
    </div>
@@ -67,8 +68,6 @@
 // function taketo(){
 //   document.location.href = "newpage.html";
 // }
-
-Moengage.track_event("myBtnClick");
 
     </script>
 	<script rel="serviceworker.js"></script>
