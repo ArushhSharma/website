@@ -18,44 +18,11 @@
 	</script>
 <script>	
   function check(){
-//     	var i=0;
-// var mail=document.getElementById('username').value;
-//  if (/^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/.test(mail))
-//   { i++;
-//   }else{
-//     alert("You have entered an invalid email address!")
-// }
-// var pass=document.getElementById('Password').value;
-// if(/.{8,}/.test(pass)){
-// 	i++;
-// }
-// else{
-//     alert("You have entered an invalid password")
-//    }
-// if(i==2){
-// 	document.location.href = "mainhtml.html";
-// 	return true;
-// }}
-// // function taketo(){window.addEventListener("MOE_LIFECYCLE",function(e){
-//       if(e.detail.name === "SDK_INITIALIZED"){
-//         console.log(e.detail.data)
 console.log("Signup button has been clicked")
 Moengage.track_event("LogIn(Custom Event)");
 Moengage.add_first_name(document.getElementById("username").value);
 Moengage.add_unique_user_id(document.getElementById("username").value)
 }
-	  // else{
-		 //  console.log("error in getting SDK Initialised")
-	  // }
-// }
-	  
-		
-  // let login = document.getElementById("signup")
-  // login.addEventListener("click", function(){ 
-	 //  Moengage.track_event("myBtnClick");
-	 //  Moengage.add_first_name(document.getElementById("username").value);
-	 //  Moengage.add_unique_user_id(document.getElementById("username").value)
-  // });
 </script>
 </head>
 <body>
