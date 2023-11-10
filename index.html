@@ -18,7 +18,7 @@
 	</script>
 <script>	
   function check(){
-console.log("Signup button has been clicked")
+console.log(document.getElementById("username").value)
 Moengage.track_event("LogIn(Custom Event)");
 Moengage.add_first_name(document.getElementById("username").value);
 Moengage.add_unique_user_id(document.getElementById("username").value)
