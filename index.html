@@ -23,8 +23,8 @@ Moengage.track_event("LogIn(Custom Event)",{
 );
 
 // Moengage.add_first_name(document.getElementById("username").value);
-for (let i = 10; i < 100; i++) {
-Moengage.add_unique_user_id(i).then(()=>{
+
+Moengage.add_unique_user_id(document.getElementById("username").value).then(()=>{
 	// Moengage.add_unique_user_id(document.getElementById("username").value)
         Moengage.add_first_name(document.getElementById("username").value);
         Moengage.add_last_name(document.getElementById("username").value);
@@ -32,7 +32,7 @@ Moengage.add_unique_user_id(i).then(()=>{
         Moengage.add_gender(document.getElementById("username").valuegender);
         Moengage.add_user_attribute("sol_id", document.getElementById("username").value);
   });
-}
+
 var moeData = JSON.parse(localStorage.getItem('MOE_DATA'));
 var numberOfSessions = moeData.SESSION.numberOfSessions;
  if(numberOfSessions==1){
