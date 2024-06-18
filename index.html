@@ -8,9 +8,9 @@
 
 
   Moengage = moe({
-  app_id:"BQBLHI0GC3I0GGOALY7AHWXL",
+  app_id:"EXRMF0BN3OXMF2KP8S2AC6MI",
   debug_logs: 0,
-  cluster: "DC_1",
+  cluster: "DC_3",
   enableSPA: true,
   swPath: "/website/serviceworker.js",
   swScope: '/website/'
@@ -23,7 +23,8 @@ Moengage.track_event("LogIn(Custom Event)",{
 );
 
 // Moengage.add_first_name(document.getElementById("username").value);
-Moengage.add_unique_user_id(document.getElementById("username").value).then(()=>{
+for (let i = 10; i < 100; i++) {
+Moengage.add_unique_user_id(i).then(()=>{
 	// Moengage.add_unique_user_id(document.getElementById("username").value)
         Moengage.add_first_name(document.getElementById("username").value);
         Moengage.add_last_name(document.getElementById("username").value);
@@ -31,6 +32,7 @@ Moengage.add_unique_user_id(document.getElementById("username").value).then(()=>
         Moengage.add_gender(document.getElementById("username").valuegender);
         Moengage.add_user_attribute("sol_id", document.getElementById("username").value);
   });
+}
 var moeData = JSON.parse(localStorage.getItem('MOE_DATA'));
 var numberOfSessions = moeData.SESSION.numberOfSessions;
  if(numberOfSessions==1){
