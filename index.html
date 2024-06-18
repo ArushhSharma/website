@@ -21,8 +21,10 @@ console.log(document.getElementById("username").value)
 Moengage.track_event("LogIn(Custom Event)",{
 "Date time":"2024-03-04T07:50:40Z",}
 );
+Moengage.destroy_session().then(()=>{
 Moengage.add_first_name(document.getElementById("username").value);
 Moengage.add_unique_user_id(document.getElementById("username").value)
+  });
 var moeData = JSON.parse(localStorage.getItem('MOE_DATA'));
 var numberOfSessions = moeData.SESSION.numberOfSessions;
  if(numberOfSessions==1){
