@@ -41,6 +41,54 @@ var numberOfSessions = moeData.SESSION.numberOfSessions;
  }
   }
 </script>
+	
+<!-- Add the following script to your website -->
+<script>
+
+// ClickTrack Embed Script
+// Add this script to your website to enable testing with ClickTrack
+(function() {
+  // Listen for messages from the ClickTrack platform
+  window.addEventListener('message', function(event) {
+    // Verify the origin if specified
+    if ('*' !== '*' && event.origin !== '*') {
+      return;
+    }
+    
+    // Handle initialization request
+    if (event.data && event.data.type === 'CLICKTRACK_INIT') {
+      // Send confirmation back to parent
+      event.source.postMessage({
+        type: 'CLICKTRACK_READY',
+        url: window.location.href
+      }, event.origin);
+      
+      console.log('ClickTrack testing enabled for this site');
+    }
+  });
+  
+  // Set required CORS headers (only works if this script is included server-side)
+  // Note: For this to work properly, the website needs to configure their server
+  if (typeof document !== 'undefined' && document.head) {
+    // Let the parent know we're ready to be embedded
+    if (window.parent !== window) {
+      try {
+        window.parent.postMessage({
+          type: 'CLICKTRACK_READY',
+          url: window.location.href
+        }, '*');
+      } catch (e) {
+        console.error('ClickTrack: Failed to communicate with parent frame', e);
+      }
+    }
+  }
+})();
+
+</script>
+
+
+
+
 </head>
 <body>
 	<div id="detail" style="margin:auto; margin-top: 30vh;">
