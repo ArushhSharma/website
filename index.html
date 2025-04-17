@@ -41,7 +41,96 @@ var numberOfSessions = moeData.SESSION.numberOfSessions;
  }
   }
 </script>
-	
+	<script>
+		
+// Action Replay Recorder Script
+// Copy and paste this in the browser console of any website
+(function() {
+  const targetOrigin = "https://b1325960-78ca-4e65-97c7-aa7d529021e8.lovableproject.com"; // Replace with your app's URL in production
+  
+  // Function to capture and send clicks
+  function captureClick(e) {
+    // Get position relative to page
+    const rect = e.target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Get selector for the element
+    const selector = getSelector(e.target);
+    
+    // Send message to parent frame
+    window.parent.postMessage({
+      type: 'action',
+      actionType: 'click',
+      selector: selector,
+      position: { x, y },
+      innerText: e.target.innerText || '',
+      tagName: e.target.tagName
+    }, targetOrigin);
+  }
+  
+  // Function to capture and send input changes
+  function captureInput(e) {
+    // Get selector for the element
+    const selector = getSelector(e.target);
+    
+    // Send message to parent frame
+    window.parent.postMessage({
+      type: 'action',
+      actionType: 'input',
+      selector: selector,
+      value: e.target.value,
+      inputType: e.target.type || 'text'
+    }, targetOrigin);
+  }
+  
+  // Helper function to generate a CSS selector for an element
+  function getSelector(el) {
+    if (el.id) {
+      return '#' + el.id;
+    }
+    
+    // Try to use data attributes or common attributes
+    if (el.dataset && Object.keys(el.dataset).length > 0) {
+      const dataAttr = Object.keys(el.dataset)[0];
+      return `[data-${dataAttr}="${el.dataset[dataAttr]}"]`;
+    }
+    
+    // Use classes if available
+    if (el.className && typeof el.className === 'string' && el.className.trim() !== '') {
+      const classes = el.className.split(' ').filter(Boolean);
+      if (classes.length > 0) {
+        return '.' + classes.join('.');
+      }
+    }
+    
+    // Fall back to tag and position
+    let selector = el.tagName.toLowerCase();
+    let siblings = Array.from(el.parentNode.children).filter(sibling => sibling.tagName === el.tagName);
+    if (siblings.length > 1) {
+      const index = siblings.indexOf(el);
+      selector += `:nth-of-type(${index + 1})`;
+    }
+    
+    return selector;
+  }
+  
+  // Add event listeners
+  document.addEventListener('click', captureClick, true);
+  document.addEventListener('change', captureInput, true);
+  document.addEventListener('input', captureInput, true);
+  
+  // Notify parent that we're ready
+  window.parent.postMessage({
+    type: 'initialized',
+    title: document.title,
+    url: window.location.href
+  }, targetOrigin);
+  
+  console.log('Action Replay Recorder initialized. Now tracking user actions.');
+})();
+    
+	</script>
 <!-- Add the following script to your website -->
 <script>
 
