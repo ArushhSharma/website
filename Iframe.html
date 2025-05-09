@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shared MOE_DATA Iframe</title>
+</head>
+<body>
+<script>
+  // Store and retrieve MOE_DATA in iframe's localStorage
+  window.addEventListener('message', (event) => {
+    // IMPORTANT: Replace below with your trusted client domains for security
+    const allowedOrigins = [
+      '*'
+      // add all client domains here
+    ];
+
+    if (!allowedOrigins.includes(event.origin)) {
+      console.warn('Blocked message from untrusted origin:', event.origin);
+      return;
+    }
+
+    const message = event.data;
+    if (!message || !message.type) return;
+
+    if (message.type === 'setUserData' && message.userData) {
+      try {
+        // Save user data as JSON string
+        localStorage.setItem('MOE_DATA', JSON.stringify(message.userData));
+        // Acknowledge success
+        event.source.postMessage({ type: 'ack', status: 'success' }, event.origin);
+      } catch (e) {
+        event.source.postMessage({ type: 'ack', status: 'error', message: e.message }, event.origin);
+      }
+    }
+
+    if (message.type === 'getUserData') {
+      const storedData = localStorage.getItem('MOE_DATA');
+      event.source.postMessage({ type: 'userData', userData: storedData }, event.origin);
+    }
+  });
+</script>
+</body>
+</html>
